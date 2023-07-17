@@ -10,13 +10,13 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: constraints.maxWidth / 15,
-        vertical: 10,
-      ),
-      child: Container(
-        color: Theme.of(context).colorScheme.background,
+    return Container(
+      color: Theme.of(context).colorScheme.background,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: constraints.maxWidth / 15,
+          vertical: 10,
+        ),
         child: Column(
           children: [
             constraints.maxWidth > 600
