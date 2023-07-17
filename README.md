@@ -1,3 +1,3 @@
 # multiplatform_login_screen
 
-A new Flutter project.
+Responsive login screen for all platforms using JWT token authorization.
