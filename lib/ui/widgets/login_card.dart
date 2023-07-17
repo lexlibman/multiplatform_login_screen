@@ -3,14 +3,14 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:multiplatform_login_screen/bloc/login_bloc.dart';
+import 'package:multiplatform_login_screen/blocs/login_bloc/login_bloc.dart';
 
 import 'main_button.dart';
 import 'custom_text_field.dart';
 import 'login_social_button.dart';
 
-class LoginCard extends StatelessWidget {
-  LoginCard({
+class LoginCard extends StatefulWidget {
+  const LoginCard({
     super.key,
     required this.height,
     required this.width,
@@ -19,14 +19,18 @@ class LoginCard extends StatelessWidget {
   final double height;
   final double width;
 
-  final TextEditingController _emailFieldController = TextEditingController();
+  @override
+  State<LoginCard> createState() => _LoginCardState();
+}
 
+class _LoginCardState extends State<LoginCard> {
   final _emailFormKey = GlobalKey<FormState>();
+  final _passwordFormKey = GlobalKey<FormState>();
+
+  final TextEditingController _emailFieldController = TextEditingController();
 
   final TextEditingController _passwordFieldController =
       TextEditingController();
-
-  final _passwordFormKey = GlobalKey<FormState>();
 
   void submitForm(BuildContext context) {
     if (_emailFormKey.currentState!.validate() &&
@@ -47,8 +51,8 @@ class LoginCard extends StatelessWidget {
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 7.0, sigmaY: 7.0),
             child: Container(
-              height: height,
-              width: width,
+              height: widget.height,
+              width: widget.width,
               decoration: const BoxDecoration(
                 color: Colors.white70,
               ),
@@ -136,7 +140,7 @@ class LoginCard extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
-                                    width: width / 7,
+                                    width: widget.width / 7,
                                     height: 1,
                                     color: Theme.of(context)
                                         .colorScheme
@@ -146,9 +150,10 @@ class LoginCard extends StatelessWidget {
                                       style: Theme.of(context)
                                           .textTheme
                                           .displayMedium!
-                                          .copyWith(fontSize: width / 25)),
+                                          .copyWith(
+                                              fontSize: widget.width / 25)),
                                   Container(
-                                    width: width / 7,
+                                    width: widget.width / 7,
                                     height: 1,
                                     color: Theme.of(context)
                                         .colorScheme
@@ -161,17 +166,17 @@ class LoginCard extends StatelessWidget {
                                 children: [
                                   LoginSocialButton(
                                     imageAsset: 'assets/images/yandex_logo.png',
-                                    size: width / 13,
+                                    size: widget.width / 13,
                                   ),
-                                  SizedBox(width: width / 22),
+                                  SizedBox(width: widget.width / 22),
                                   LoginSocialButton(
                                     imageAsset: 'assets/images/google_logo.png',
-                                    size: width / 13,
+                                    size: widget.width / 13,
                                   ),
-                                  SizedBox(width: width / 22),
+                                  SizedBox(width: widget.width / 22),
                                   LoginSocialButton(
                                     imageAsset: 'assets/images/vk_logo.png',
-                                    size: width / 13,
+                                    size: widget.width / 13,
                                   ),
                                 ],
                               ),
@@ -184,7 +189,7 @@ class LoginCard extends StatelessWidget {
                                     style: Theme.of(context)
                                         .textTheme
                                         .displayMedium!
-                                        .copyWith(fontSize: width / 25),
+                                        .copyWith(fontSize: widget.width / 25),
                                   ),
                                   Row(
                                     children: [
@@ -193,7 +198,8 @@ class LoginCard extends StatelessWidget {
                                         style: Theme.of(context)
                                             .textTheme
                                             .labelMedium!
-                                            .copyWith(fontSize: width / 25),
+                                            .copyWith(
+                                                fontSize: widget.width / 25),
                                       )
                                     ],
                                   )

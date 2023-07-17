@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:multiplatform_login_screen/ui/screens/login_screen/web_layout/web_layout.dart';
 
 import '../../widgets/login_card.dart';
 
@@ -7,27 +9,25 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isTabletOrDesktop =
-        MediaQuery.of(context).size.shortestSide > 600;
-    return Stack(
-      children: [
-        Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: AssetImage('assets/images/login_background.png'),
-            ),
-          ),
+    final bool isBigScreen = MediaQuery.of(context).size.shortestSide > 600;
+    if (kIsWeb) {
+      return const WebLayout();
+    }
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage('assets/images/login_background.png'),
         ),
-        Center(
-          child: isTabletOrDesktop
-              ? LoginCard(height: 600, width: 450)
-              : LoginCard(
-                  height: MediaQuery.of(context).size.height / 1.5,
-                  width: MediaQuery.of(context).size.width / 1.1,
-                ),
-        ),
-      ],
+      ),
+      child: Center(
+        child: isBigScreen
+            ? const LoginCard(height: 600, width: 450)
+            : LoginCard(
+                height: MediaQuery.of(context).size.height / 1.5,
+                width: MediaQuery.of(context).size.width / 1.1,
+              ),
+      ),
     );
   }
 }

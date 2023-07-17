@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:multiplatform_login_screen/bloc/login_bloc.dart';
+
 import 'package:multiplatform_login_screen/config/theme/app_themes.dart';
 import 'package:multiplatform_login_screen/ui/screens/login_screen/login_screen.dart';
+
+import 'blocs/login_bloc/login_bloc.dart';
 
 void main() {
   runApp(const MainApp());
